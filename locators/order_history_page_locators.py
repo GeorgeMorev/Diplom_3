@@ -23,9 +23,4 @@ class OrderHistoryPageLocators:
     # Метод для динамической генерации локаторов
     @staticmethod
     def get_order_number_locator(order_number):
-        """
-        Возвращает локатор для номера заказа по его номеру.
-        :param order_number: Номер заказа, который ищем.
-        :return: Кортеж (By, локатор)
-        """
         return By.XPATH, f"//p[contains(@class, 'text_type_digits-default') and text()='{order_number}']"
