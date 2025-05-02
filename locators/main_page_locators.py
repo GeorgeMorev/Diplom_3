@@ -2,8 +2,6 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators:
-    CONSTRUCTOR_BUTTON = (By.XPATH, "//p[contains(@class, 'AppHeader_header__linkText__3q_va') and text("
-                                    ")='Конструктор']")
     ORDERS_FEED_BUTTON = (By.XPATH, "//p[contains(@class, 'AppHeader_header__linkText__3q_va') and text()='Лента "
                                     "Заказов']")
     INGREDIENT_DETAILS_MODAL_POPUP = (By.XPATH, "//div[contains(@class, 'Modal_modal__contentBox__sCy8X')]")
