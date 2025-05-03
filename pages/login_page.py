@@ -39,7 +39,7 @@ class LoginPage:
     @allure.step("Кликаем по ссылке 'Восстановить пароль'")
     def click_recovery_password_link(self):
         recovery_password_link = LoginPageLocators.RECOVERY_PASSWORD_LINK
-        self.wait.until(EC.visibility_of_element_located(recovery_password_link))
+        self.wait.until(EC.visibility_of_element_located(recovery_password_link)).click()
 
     @allure.step("Нажимаем кнопку 'Конструктор'")
     def click_constructor_button(self):

@@ -1,7 +1,7 @@
-import pytest
+from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 import allure
-
+import pytest
 
 @allure.feature("WebDriver")
 @allure.story("Настройка драйвера для тестирования в разных браузерах")
@@ -14,7 +14,11 @@ def driver(request):
         if browser == "chrome":
             options = webdriver.ChromeOptions()
             options.add_argument("--window-size=1920,1080")
-            driver = webdriver.Chrome(options=options)
+
+            # Указываем путь к chromedriver через Service
+            driver_path = "/Users/georgemorev/tools/chromedriver-mac-arm64/chromedriver"
+            service = Service(driver_path)
+            driver = webdriver.Chrome(service=service, options=options)
             allure.step("Запускаем Chrome браузер с заданными параметрами")
 
         elif browser == "firefox":
