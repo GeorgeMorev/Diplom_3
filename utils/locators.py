@@ -17,18 +17,22 @@ class MainLocators:
 
 
 class LoginLocators:
+    LOGIN_ENTER_BUTTON = (By.XPATH, "//button[text()='Войти']")
     RESET_LINK = (By.XPATH, "//a[contains(@class, 'Auth_link') and text()='Восстановить пароль']")
     LOGIN_FORM = (By.NAME, "name")
+    LOGIN_EMAIL_INPUT = (By.XPATH, "//input[@name='name']")
+    LOGIN_PASSWORD_INPUT = (By.XPATH, "//input[@name='Пароль']")
 
 
 class ForgotPasswordLocators:
-    EMAIL_INPUT = (By.XPATH, "//input[@name='name']")
+    FORGOT_PASSWORD_EMAIL_INPUT = (By.XPATH, "//input[@name='name']")
     RESTORE_BUTTON = (By.XPATH, "//button[text()='Восстановить']")
 
 
 class ResetPasswordLocators:
+    RESET_PASSWORD_EMAIL_INPUT = (By.XPATH, "//input[@name='name']")
     RESET_PASSWORD_INPUT = (By.XPATH, "//input[@name='Введите новый пароль']")
-    PASSWORD_INPUT = (By.XPATH, "//input[@name='Пароль']")
+    # PASSWORD_INPUT = (By.XPATH, "//input[@name='Пароль']")
     SHOW_PASSWORD_ICON = (By.XPATH, "//div[contains(@class, 'input__icon-action')]")
 
 

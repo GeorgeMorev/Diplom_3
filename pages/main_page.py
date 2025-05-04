@@ -7,33 +7,13 @@ from utils.urls import URLs
 class MainPage(BasePage):
     url = URLs.MAIN_PAGE_URL
 
-    def click_profile_button(self):
-        with allure.step("Клик по кнопке 'Личный кабинет'"):
-            self.click(MainLocators.PROFILE_BUTTON)
-
-    def click_constructor_button(self):
-        with allure.step("Клик по кнопке 'Конструктор'"):
-            self.click(MainLocators.CONSTRUCTOR_BUTTON)
-
     def is_constructor_visible(self):
         with allure.step("Проверка, что отображается раздел с булками конструктора"):
             return self.is_visible(MainLocators.BUN_SECTION)
 
-    def click_order_feed_button(self):
-        with allure.step("Клик по кнопке 'Лента заказов'"):
-            self.click(MainLocators.FEED_BUTTON)
-
-    def click_ingredient(self):
-        with allure.step("Клик по ингредиенту"):
-            self.click(MainLocators.INGREDIENT)
-
     def is_ingredient_details_visible(self):
         with allure.step("Проверка, что окно деталей ингредиента отображается"):
             return self.is_visible(MainLocators.INGREDIENT_DETAILS)
-
-    def close_ingredient_details(self):
-        with allure.step("Закрытие окна деталей ингредиента"):
-            self.click(MainLocators.INGREDIENT_DETAILS_CLOSE_BUTTON)
 
     def is_ingredient_details_closed(self):
         with allure.step("Проверка, что окно деталей ингредиента закрыто"):

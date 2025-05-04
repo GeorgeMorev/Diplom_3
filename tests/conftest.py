@@ -2,7 +2,7 @@ import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.main_page import MainPage
@@ -51,7 +51,7 @@ def open_page(driver):
         page = page_class(driver)
         with allure.step(f"Открытие страницы: {page.url}"):
             driver.get(page.url)
-            WebDriverWait(driver, 10).until(expected_conditions.url_to_be(page.url))
+            WebDriverWait(driver, 10).until(EC.url_to_be(page.url))
         return page
     return _open
 
@@ -60,7 +60,6 @@ def open_page(driver):
 def login_user(driver):
     user = create_test_user()
     login(driver, user)
-    WebDriverWait(driver, 10).until(expected_conditions.url_to_be(MainPage.url))
     yield user
     delete_test_user(user)
 
