@@ -1,7 +1,13 @@
-from selenium.webdriver.chrome.service import Service
-from selenium import webdriver
 import allure
 import pytest
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
+from pages.main_page import MainPage
+from utils.user_api import delete_test_user, create_test_user, login
+
 
 @allure.feature("WebDriver")
 @allure.story("Настройка драйвера для тестирования в разных браузерах")
@@ -37,3 +43,39 @@ def driver(request):
     # Шаг 2: Закрытие браузера
     with allure.step("Закрываем браузер"):
         driver.quit()
+
+
+@pytest.fixture
+def open_page(driver):
+    def _open(page_class):
+        page = page_class(driver)
+        with allure.step(f"Открытие страницы: {page.url}"):
+            driver.get(page.url)
+            WebDriverWait(driver, 10).until(expected_conditions.url_to_be(page.url))
+        return page
+    return _open
+
+
+@pytest.fixture
+def login_user(driver):
+    user = create_test_user()
+    login(driver, user)
+    WebDriverWait(driver, 10).until(expected_conditions.url_to_be(MainPage.url))
+    yield user
+    delete_test_user(user)
+
+
+@pytest.fixture
+def create_order(driver, login_user, open_page):
+    from pages.main_page import MainPage
+
+    page = open_page(MainPage)
+    page.add_ingredient_to_burger()
+    page.click_place_order_button()
+
+    def order_number_is_valid(_):
+        order_number = page.get_order_number()
+        return order_number and order_number != "9999"
+
+    WebDriverWait(driver, timeout=10).until(order_number_is_valid)
+    return page.get_order_number()
