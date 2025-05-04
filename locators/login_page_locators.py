@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 
 
 class LoginPageLocators:
+    ORDERS_FEED_BUTTON = (By.XPATH, "//p[contains(@class, 'AppHeader_header__linkText__3q_va') and text()='Лента "
+                                    "Заказов']")
     LOGIN_EMAIL_INPUT = (By.XPATH, "//label[text()='Email']/following-sibling::input")
     LOGIN_PASSWORD_INPUT = (By.XPATH, "//label[text()='Пароль']/following-sibling::input")
     ENTER_BUTTON = (By.XPATH, "//button[contains(@class, 'button_button_type_primary') and text()='Войти']")
