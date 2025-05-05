@@ -1,11 +1,9 @@
 import uuid
-from selenium.webdriver.support import expected_conditions as EC
-
 import requests
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
 from pages.main_page import MainPage
-from utils.locators import ResetPasswordLocators, LoginLocators
+from utils.locators import LoginLocators
 from utils.urls import URLs, AuthURLs
 
 

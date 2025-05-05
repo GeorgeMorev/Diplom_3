@@ -38,4 +38,4 @@ class TestMainPage:
         main_page = open_page(MainPage)
         main_page.add_ingredient_to_burger()
         main_page.click(MainLocators.PLACE_ORDER_BUTTON)
-        assert main_page.is_order_details_visible()
+        assert main_page.is_order_details_visible(MainLocators.ORDER_DETAILS)
