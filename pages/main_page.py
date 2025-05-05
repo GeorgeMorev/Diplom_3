@@ -31,10 +31,6 @@ class MainPage(BasePage):
         with allure.step("Клик по кнопке 'Оформить заказ'"):
             self.click(MainLocators.PLACE_ORDER_BUTTON)
 
-    def is_order_details_visible(self):
-        with allure.step("Проверка, что окно деталей заказа отображается"):
-            return self.is_visible(MainLocators.ORDER_DETAILS)
-
     def get_order_number(self):
         with allure.step("Получение номера заказа"):
             return self.get_text(MainLocators.ORDER_NUMBER)

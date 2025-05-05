@@ -1,21 +1,21 @@
 import allure
 from pages.feed_page import FeedPage
+from pages.main_page import MainPage
+from utils.locators import FeedLocators
 
 
 @allure.feature("Лента заказов")
 class TestOrderFeed:
 
     @allure.description("Открытие деталей заказа из ленты заказов")
-    def test_open_order_details_from_feed(self, driver):
-        feed_page = FeedPage(driver)
-        feed_page.open()
-        feed_page.click_order()
-        assert feed_page.is_order_details_visible()
+    def test_open_order_details_from_feed(self, driver, open_page):
+        feed_page = open_page(FeedPage)
+        feed_page.click(FeedLocators.ORDER)
+        assert feed_page.is_order_details_visible(FeedLocators.ORDER_DETAILS)
 
     @allure.description("Проверка, что созданный пользователем заказ появляется в ленте")
-    def test_user_orders_appear_in_feed(self, driver, login_user, create_order):
-        feed_page = FeedPage(driver)
-        feed_page.open()
+    def test_user_orders_appear_in_feed(self, driver, login_user, create_order, open_page):
+        feed_page = open_page(FeedPage)
         assert feed_page.has_order_from_user(create_order)
 
     @allure.description("Проверка увеличения счётчика всех выполненных заказов после нового заказа")

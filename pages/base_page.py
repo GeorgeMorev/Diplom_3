@@ -59,3 +59,7 @@ class BasePage:
 
             actions = ActionChains(self.driver)
             actions.click_and_hold(source).move_to_element(target).release().perform()
+
+    def is_order_details_visible(self, locator):
+        with allure.step("Проверка, что детали заказа отображаются"):
+            return self.is_visible(locator)

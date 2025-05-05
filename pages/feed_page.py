@@ -1,7 +1,8 @@
 import allure
 from selenium.webdriver.common.by import By
 
-from utils.locators import FeedLocators
+from utils import locators
+from utils.locators import FeedLocators, MainLocators
 from utils.urls import URLs
 from pages.base_page import BasePage
 
@@ -21,10 +22,6 @@ class FeedPage(BasePage):
         with allure.step("Клик по первому заказу в списке"):
             self.click(FeedLocators.ORDER)
 
-    def is_order_details_visible(self):
-        with allure.step("Проверка, что детали заказа отображаются"):
-            return self.is_visible(FeedLocators.ORDER_DETAILS)
-
     def is_order_present(self, order_number):
         with allure.step(f"Проверка, что заказ с номером {order_number} отображается в списке"):
             xpath = FeedLocators.USER_ORDER.format(order_number)
@@ -37,3 +34,8 @@ class FeedPage(BasePage):
     def get_today_done(self):
         with allure.step("Получение количества заказов, выполненных сегодня"):
             return int(self.get_text(FeedLocators.DONE_TODAY))
+
+    def has_order_from_user(self, order_number: str):
+        with allure.step("Проверка, что заказ отображается в ленте"):
+            locator = locators.FeedLocators.order_number_locator(order_number)
+            return self.is_visible(locator)

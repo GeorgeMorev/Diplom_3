@@ -12,7 +12,7 @@ class MainLocators:
     INGREDIENT_COUNTER = (By.XPATH, "//p[contains(@class, 'counter__num')]")
     PLACE_ORDER_BUTTON = (By.XPATH, "//button[text()='Оформить заказ']")
     ORDER_DETAILS = (By.XPATH, "//p[text()='идентификатор заказа']")
-    ORDER_NUMBER = (By.XPATH, "//h2[contains(@class, 'text_type_digits-large')]")
+    ORDER_NUMBER = (By.XPATH, "//h2[contains(@class, 'Modal_modal__title') and contains(@class, 'text_type_digits-large')]")
     BUN_SECTION = (By.XPATH, "//h2[text()='Булки']")
 
 
@@ -43,6 +43,11 @@ class ProfileLocators:
 
 
 class FeedLocators:
+
+    @staticmethod
+    def order_number_locator(order_number: str):
+        return By.XPATH, f"//p[starts-with(text(), '#') and contains(text(), '{order_number}')]"
+
     FEED_HEADER = (By.XPATH, "//h1[text()='Лента заказов']")
     ORDER_STARTED_TEXT = (By.XPATH, "//p[contains(text(), 'Ваш заказ начали готовить')]")
     ORDER = (By.XPATH, "//li[contains(@class, 'OrderHistory_listItem')]//a")
