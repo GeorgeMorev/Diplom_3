@@ -18,7 +18,7 @@ def create_test_user():
         "password": "123456",
         "name": "Test User"
     }
-    requests.post(AuthURLs.AUTH_REGISTER_URL, json=user)  # Используем AuthURLs
+    requests.post(AuthURLs.AUTH_REGISTER_URL, json=user)
     return user
 
 

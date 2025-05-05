@@ -10,7 +10,7 @@ class URLs:
 
 
 class AuthURLs:
-    BASE_AUTH_URL = f"{URLs.BASE_URL}/auth"
+    BASE_AUTH_URL = f"{URLs.BASE_URL}/api/auth"
     AUTH_REGISTER_URL = f"{BASE_AUTH_URL}/register"
     AUTH_LOGIN_URL = f"{BASE_AUTH_URL}/login"
     AUTH_USER_DELETE_URL = f"{BASE_AUTH_URL}/user"
