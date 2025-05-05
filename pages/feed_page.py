@@ -39,3 +39,8 @@ class FeedPage(BasePage):
         with allure.step("Проверка, что заказ отображается в ленте"):
             locator = locators.FeedLocators.order_number_locator(order_number)
             return self.is_visible(locator)
+
+    def is_order_in_progress(self, order_number: str) -> bool:
+        with allure.step(f"Проверка, что заказ {order_number} находится в работе"):
+            locator = FeedLocators.order_in_progress_locator(order_number)
+            return self.is_visible(locator)

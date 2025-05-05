@@ -48,6 +48,10 @@ class FeedLocators:
     def order_number_locator(order_number: str):
         return By.XPATH, f"//p[starts-with(text(), '#') and contains(text(), '{order_number}')]"
 
+    @staticmethod
+    def order_in_progress_locator(order_number: str):
+        return By.XPATH, f"//p[contains(normalize-space(text()), '{order_number}')]"
+
     FEED_HEADER = (By.XPATH, "//h1[text()='Лента заказов']")
     ORDER_STARTED_TEXT = (By.XPATH, "//p[contains(text(), 'Ваш заказ начали готовить')]")
     ORDER = (By.XPATH, "//li[contains(@class, 'OrderHistory_listItem')]//a")
