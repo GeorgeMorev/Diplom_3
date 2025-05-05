@@ -34,6 +34,7 @@ class ResetPasswordLocators:
     RESET_PASSWORD_INPUT = (By.XPATH, "//input[@name='Введите новый пароль']")
     # PASSWORD_INPUT = (By.XPATH, "//input[@name='Пароль']")
     SHOW_PASSWORD_ICON = (By.XPATH, "//div[contains(@class, 'input__icon-action')]")
+    RESTORE_BUTTON = (By.XPATH, "//button[text()='Восстановить']")
 
 
 class ProfileLocators:
