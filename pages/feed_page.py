@@ -1,8 +1,6 @@
 import allure
-from selenium.webdriver.common.by import By
 
-from utils import locators
-from utils.locators import FeedLocators, MainLocators
+from utils.locators import FeedLocators
 from utils.urls import URLs
 from pages.base_page import BasePage
 
@@ -25,7 +23,7 @@ class FeedPage(BasePage):
     def is_order_present(self, order_number):
         with allure.step(f"Проверка, что заказ с номером {order_number} отображается в списке"):
             xpath = FeedLocators.USER_ORDER.format(order_number)
-            return self.is_visible((By.XPATH, xpath))
+            return self.is_visible(("xpath", xpath))
 
     def get_total_done(self):
         with allure.step("Получение общего количества выполненных заказов за всё время"):
@@ -37,7 +35,7 @@ class FeedPage(BasePage):
 
     def has_order_from_user(self, order_number: str):
         with allure.step("Проверка, что заказ отображается в ленте"):
-            locator = locators.FeedLocators.order_number_locator(order_number)
+            locator = FeedLocators.order_number_locator(order_number)
             return self.is_visible(locator)
 
     def is_order_in_progress(self, order_number: str) -> bool:

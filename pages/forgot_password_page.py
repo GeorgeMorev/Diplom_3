@@ -11,4 +11,4 @@ class ForgotPasswordPage(BasePage):
     def toggle_password_visibility(self):
         with allure.step("Переключение видимости пароля"):
             icon = self.wait_for_element_visible(ResetPasswordLocators.SHOW_PASSWORD_ICON)
-            self.driver.execute_script("arguments[0].click();", icon)
+            self.js_click(icon)
