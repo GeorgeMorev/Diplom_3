@@ -3,7 +3,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
-
 from pages.main_page import MainPage
 from utils.user_api import delete_test_user, create_test_user, login
 
