@@ -31,6 +31,26 @@ class MainPage(BasePage):
         with allure.step("Клик по кнопке 'Оформить заказ'"):
             self.click(MainLocators.PLACE_ORDER_BUTTON)
 
+    def click_feed(self):
+        with allure.step("Клик по кнопке 'Лента заказов'"):
+            self.click(MainLocators.FEED_BUTTON)
+
+    def click_constructor(self):
+        with allure.step("Клик по кнопке 'Конструктор'"):
+            self.click(MainLocators.CONSTRUCTOR_BUTTON)
+
+    def click_ingredient(self):
+        with allure.step("Клик по ингредиенту"):
+            self.click(MainLocators.INGREDIENT)
+
+    def close_ingredient_details(self):
+        with allure.step("Закрытие окна деталей ингредиента"):
+            self.click(MainLocators.INGREDIENT_DETAILS_CLOSE_BUTTON)
+
     def get_order_number(self):
         with allure.step("Получение номера заказа"):
             return self.get_text(MainLocators.ORDER_NUMBER)
+
+    def is_order_details_visible(self):
+        with allure.step("Проверка, что детали заказа видны"):
+            return super().is_order_details_visible(MainLocators.ORDER_DETAILS)
