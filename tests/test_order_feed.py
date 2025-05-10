@@ -1,6 +1,5 @@
 import allure
 from pages.feed_page import FeedPage
-from pages.main_page import MainPage
 from utils.locators import FeedLocators
 
 

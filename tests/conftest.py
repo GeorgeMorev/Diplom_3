@@ -2,6 +2,9 @@ import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.wait import WebDriverWait
+
+from pages.main_page import MainPage
 from utils.user_api import delete_test_user, create_test_user, login
 
 
@@ -57,13 +60,16 @@ def login_user(driver):
 
 @pytest.fixture
 def create_order(driver, login_user, open_page):
-    from pages.main_page import MainPage
 
     page = open_page(MainPage)
     page.add_ingredient_to_burger()
     page.click_place_order_button()
 
     with allure.step("Ожидание получения номера заказа"):
-        assert page.get_order_number() != "9999", "Некорректный номер заказа"
+        WebDriverWait(driver, timeout=10).until(
+            lambda d: page.get_order_number() != "9999",
+            "Номер заказа не обновился"
+        )
+
 
     return page.get_order_number()
