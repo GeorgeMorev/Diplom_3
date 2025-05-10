@@ -12,3 +12,11 @@ class ForgotPasswordPage(BasePage):
         with allure.step("Переключение видимости пароля"):
             icon = self.wait_for_element_visible(ResetPasswordLocators.SHOW_PASSWORD_ICON)
             self.js_click(icon)
+
+    def enter_email(self, email):
+        with allure.step("Вводим email для восстановления пароля"):
+            self.type(ResetPasswordLocators.RESET_PASSWORD_EMAIL_INPUT, email)
+
+    def click_restore_button(self):
+        with allure.step("Нажимаем кнопку восстановления"):
+            self.click(ResetPasswordLocators.RESTORE_BUTTON)
