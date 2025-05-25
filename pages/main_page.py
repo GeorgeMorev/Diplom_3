@@ -53,7 +53,7 @@ class MainPage(BasePage):
 
     def is_order_details_visible(self):
         with allure.step("Проверка, что детали заказа видны"):
-            return super().is_order_details_visible(MainLocators.ORDER_DETAILS)
+            return self.is_visible(MainLocators.ORDER_DETAILS)
 
     def go_to_profile(self):
         self.wait_for_modal_to_disappear()
