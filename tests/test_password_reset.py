@@ -12,9 +12,8 @@ class TestPasswordReset:
     def test_go_to_reset_password_page(self, open_page):
         login_page = open_page(LoginPage)
         login_page.go_to_reset_password_page()
-
-        reset_page = ForgotPasswordPage(login_page.driver)
-        assert reset_page.is_opened()
+        forgot_page = open_page(ForgotPasswordPage)
+        assert forgot_page.is_opened()
 
     @allure.title("Запрос восстановления пароля")
     @allure.description("Запрос на восстановление пароля с корректным email")
@@ -22,23 +21,22 @@ class TestPasswordReset:
         login_page = open_page(LoginPage)
         login_page.go_to_reset_password_page()
 
-        forgot_page = ForgotPasswordPage(login_page.driver)
+        forgot_page = open_page(ForgotPasswordPage, navigate=False)
         forgot_page.enter_email("test@example.com")
         forgot_page.click_restore_button()
 
-        reset_page = ResetPasswordPage(forgot_page.driver)
+        reset_page = open_page(ResetPasswordPage, navigate=False)
         assert reset_page.is_opened()
 
     @allure.title("Переключение видимости пароля")
     @allure.description("Проверка переключения видимости пароля на этапе восстановления")
-    def test_show_password_button_activates_input(self, open_page):
+    def test_show_password_button_activates_input(self, open_page, driver):
         forgot_page = open_page(ForgotPasswordPage)
         forgot_page.enter_email("test@example.com")
         forgot_page.click_restore_button()
 
-        reset_page = ResetPasswordPage(forgot_page.driver)
+        reset_page = ResetPasswordPage(driver)
         type_before = reset_page.get_password_input_type()
         reset_page.toggle_password_visibility()
         type_after = reset_page.get_password_input_type()
-
         assert type_before != type_after

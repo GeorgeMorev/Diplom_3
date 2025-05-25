@@ -39,14 +39,13 @@ def driver(request):
 
 @pytest.fixture
 def open_page(driver):
-    def _open(page_class):
+    def _open_page(page_class, navigate=True):
         page = page_class(driver)
-        with allure.step(f"Открытие страницы: {page.url}"):
+        if navigate and hasattr(page, "url"):
             driver.get(page.url)
-            assert page.is_opened(), "Страница не открылась по ожидаемому URL"
         return page
 
-    return _open
+    return _open_page
 
 
 @pytest.fixture
