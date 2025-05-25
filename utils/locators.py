@@ -14,6 +14,7 @@ class MainLocators:
     ORDER_DETAILS = (By.XPATH, "//p[text()='идентификатор заказа']")
     ORDER_NUMBER = (By.XPATH, "//h2[contains(@class, 'Modal_modal__title') and contains(@class, 'text_type_digits-large')]")
     BUN_SECTION = (By.XPATH, "//h2[text()='Булки']")
+    MODAL_OVERLAY = (By.CLASS_NAME, "Modal_modal_overlay__x2ZCr")
 
 
 class LoginLocators:

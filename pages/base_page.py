@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+from utils.locators import MainLocators
 
 
 class BasePage(ABC):
@@ -70,8 +71,6 @@ class BasePage(ABC):
             return self.is_visible(locator)
 
     def wait_for_modal_to_disappear(self):
-        from selenium.webdriver.common.by import By
-        MODAL_OVERLAY = (By.CLASS_NAME, "Modal_modal_overlay__x2ZCr")
         with allure.step("Ожидание скрытия модального окна"):
-            self.wait.until(ec.invisibility_of_element_located(MODAL_OVERLAY))
+            self.wait.until(ec.invisibility_of_element_located(MainLocators.MODAL_OVERLAY))
 
