@@ -1,8 +1,14 @@
+import time
+
 import allure
 from abc import ABC, abstractmethod
+from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+
+from config.urls import URLs
+from locators.main_page_locators import MainPageLocators
 from utils.locators import MainLocators
 
 
@@ -74,3 +80,17 @@ class BasePage(ABC):
         with allure.step("Ожидание скрытия модального окна"):
             self.wait.until(ec.invisibility_of_element_located(MainLocators.MODAL_OVERLAY))
 
+    def check_url(self, expected_url_part):
+        return expected_url_part in self.driver.current_url
+
+    def wait_until_overlay_disappears(self):
+        try:
+            self.wait.until(
+                ec.invisibility_of_element_located(MainPageLocators.OVERLAY)
+            )
+            time.sleep(0.5)
+        except TimeoutException:
+            raise AssertionError("Оверлей не исчез вовремя — элемент перекрыт.")
+
+    def is_on_order_history_page(self) -> bool:
+        return self.driver.current_url == URLs.ORDER_HISTORY_PAGE

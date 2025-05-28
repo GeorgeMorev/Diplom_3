@@ -28,11 +28,3 @@ def delete_test_user(user):
     requests.delete(AuthURLs.AUTH_USER_DELETE_URL, headers=headers)  # Используем AuthURLs
 
 
-def login(driver, user):
-    driver.get(URLs.LOGIN_PAGE_URL)
-    WebDriverWait(driver, 10).until(EC.visibility_of_element_located(LoginLocators.LOGIN_EMAIL_INPUT))
-    driver.find_element(*LoginLocators.LOGIN_EMAIL_INPUT).send_keys(user["email"])
-    driver.find_element(*LoginLocators.LOGIN_PASSWORD_INPUT).send_keys(user["password"])
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable(LoginLocators.LOGIN_ENTER_BUTTON))
-    driver.find_element(*LoginLocators.LOGIN_ENTER_BUTTON).click()
-    WebDriverWait(driver, 10).until(EC.url_to_be(MainPage.url))

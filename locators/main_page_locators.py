@@ -8,6 +8,7 @@ class MainPageLocators:
     CLOSE_INGREDIENT_DETAILS_MODAL_POPUP_BUTTON = (By.XPATH, "(//button[contains(@class, 'Modal_modal__close')])[1]")
     ORDER_BUTTON = (By.XPATH, "//button[contains(@class, 'button_button__33qZ0') and contains(@class, "
                               "'button_button_type_primary__1O7Bx') and text()='Оформить заказ']")
+    OVERLAY = (By.CLASS_NAME, "Modal_modal_overlay__x2ZCr")
 
     @staticmethod
     def get_ingredient_locator(ingredient_name):

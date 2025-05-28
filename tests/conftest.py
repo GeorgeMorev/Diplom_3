@@ -5,9 +5,10 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
+from pages.login_page import LoginPage
 
 from pages.main_page import MainPage
-from utils.user_api import delete_test_user, create_test_user, login
+from utils.user_api import delete_test_user, create_test_user
 
 
 @pytest.fixture(params=["chrome", "firefox"])
@@ -52,7 +53,7 @@ def open_page(driver):
 def login_user(driver):
     user = create_test_user()
     with allure.step("Логин под тестовым пользователем"):
-        login(driver, user)
+        LoginPage(driver).login_user(user)
     yield user
     with allure.step("Удаление тестового пользователя"):
         delete_test_user(user)

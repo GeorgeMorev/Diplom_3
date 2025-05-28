@@ -56,6 +56,5 @@ class MainPage(BasePage):
             return self.is_visible(MainLocators.ORDER_DETAILS)
 
     def go_to_profile(self):
-        self.wait_for_modal_to_disappear()
-        with allure.step("Переход в личный кабинет"):
-            self.click(MainLocators.PROFILE_BUTTON)
+        self.wait_until_overlay_disappears()
+        self.click(MainLocators.PROFILE_BUTTON)
